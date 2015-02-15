@@ -65,3 +65,6 @@ li {
   position: fixed;
   text-align: center;
   left: 25%;}
+
+#blog-entries {
+  display: block;}
