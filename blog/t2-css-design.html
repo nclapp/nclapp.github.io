@@ -29,32 +29,60 @@
         Part of the problem for me was the interplay between <em>display</em> and <em>position</em> properties. For this blog post, I will try to describe the <em>position</em> property and its multiple behaviors.
       </p>
       <p>
-        Normal flow is simply when each block-level element (like &lt;h1&gt;, &lt;p&gt;, etc.) sits atop the next, so the first one is on top, the second one below, the third one below that, etc. If you have two elements that are only half as wide as the page that could fit on the page side-by-side, they won't; they'll just stack on top of one another even though they could fit. This is normal flow: from top to bottom.
+        <b><i>Normal flow</i></b> is simply when each block-level element (like &lt;h1&gt;, &lt;p&gt;, etc.) sits atop the next, so the first one is on top, the second one below, the third one below that, etc. If you have two elements that are only half as wide as the page that could fit on the page side-by-side, they won't; they'll just stack on top of one another even though they could fit. This is normal flow: from top to bottom.
       </p>
       <p>
-        Relative flow is the closest cousin to normal flow, since you are basically adjusting an element's position relative to where it would appear in normal flow. Other surrounding elements are not affected. So if you have three paragraphs, you could move the middle one (for instance) down and to the right any number of pixels, percentage points, or em-spaces. Assign relative flow to an element by inserting the CSS code <em>position: relative</em> in its stylesheet. Then tell it where to move and by how far by adding top, right, left, or bottom offset properties. To move an element down 10 em-spaces, you would write</p>
+        <b><i>Relative flow</i></b> is the closest cousin to normal flow, since you are basically adjusting an element's position relative to where it would appear in normal flow. Other surrounding elements are not affected. So if you have three paragraphs, you could move the middle one (for instance) down and to the right any number of pixels, percentage points, or em-spaces. Assign relative flow to an element by inserting the CSS code <em>position: relative</em> in its stylesheet. Then tell it where to move and by how far by adding top, right, left, or bottom offset properties. To move an element down 10 em-spaces, you would write</p>
         <p>
           <strong>
           element {
-          <br>position: relative;
-          <br>top: 10em;}
+          <br/>position: relative;
+          <br/>top: 10em;}
         </strong>
       </p>
       <p>
         This will move your specified element down 10 em-spaces in relation to where it would normally be, and not affect any of its surrounding elements.
       </p>
       <p>
-        Absolute positioning takes it out of normal flow, and where relative positioning moves an element based on where it would appear in normal flow, absolute positioning moves an element in relation to its parent element. In absolute positioning, other elements act like the one with absolute positioning isn't even there. Much like above in relative positioning, we move an element with absolute positioning using the offset properties. But instead of moving in relation to its normal flow position, it will move in relation to its parent element.
+        <b><i>Absolute positioning</i></b> takes it out of normal flow, and where relative positioning moves an element based on where it would appear in normal flow, absolute positioning moves an element in relation to its parent element. In absolute positioning, other elements act like the one with absolute positioning isn't even there. Much like above in relative positioning, we move an element with absolute positioning using the offset properties. But instead of moving in relation to its normal flow position, it will move in relation to its parent element.
       </p>
       <p>
           <strong>
           element {
-          <br>position: absolute;
-          <br>left: 10em;}
+          <br/>position: absolute;
+          <br/>left: 10em;}
         </strong>
       </p>
       <p>
         This will move the element 10 em-spaces to the right of where it would ordinarily appear within its containing element, such as a &lt;p&gt; or an &lt;h1&gt;, since we are offsetting its left side by 10em. If there is also another element there 10 em-spaces to the right, they will overlap, since other elements will ignore the position of the absolute positioned item and follow their own specific instructions.
+      </p>
+      <p>
+        <b><i>Fixed positioning</i></b> is yet another way to align elements, but instead of moving in relation to its default position like relative positioning, or in relation to its parent element like absolute positioning, fixed positioning moves an element in relation to the browser window itself. Fixed position elements do not affect the positioning of surrounding objects, and most notable, they don't even move when a user scrolls up, down, left, or right on a page. Fixed positioning is a great way to plant a navigation menu at the top or the side of a page; as you scroll through it, the fixed element will stay put as if it were "glued on the screen," as it described in one of the Codecademy exercises. Assign an element fixed position like this:
+      </p>
+      <p>
+          <strong>
+          element {
+          <br/>position: fixed;
+          <br/>left: 0px;
+          <br/>top:0px;
+          <br/>width: 100%;}
+        </strong>
+      </p>
+      <p>
+        The above statement will stretch the element 100% of the screen width and align it to the top. It will stay on top even if there is text or another element underneath. To prevent other elements from disappearing beneath it, you can set them with a top-margin (or whatever side you are trying to offset it from) of the height (again, or width or whatever) of the fixed element. This way they won't obscure one another.
+      </p>
+      <p>
+        Hopefully this summary of the differences among Relative, Fixed, and Absolute positioning in relation to normal flow is helpful! It is a difficult and confusing topic, especially when combined with the <em>display</em> property. The crucial thing to remember is that each type of positioning moves an element in relation to something else:
+      </p>
+      <dl>
+        <dt>Relative Positioning:</dt>
+        <dd>Moves an element in relation to where it would be in normal flow.</dd>
+        <dt>Absolute Positioning:</dt>
+        <dd>Moves an element in relation to its parent element.</dd>
+        <dt>Fixed Positioning:</dt>
+        <dd>Moves an element in relation to the browser window.</dd>
+      </dl>
+      <p>Many thanks for reading and see you again soon!</p>
 
     </section>
 
