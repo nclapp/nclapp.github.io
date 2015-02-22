@@ -6,6 +6,12 @@ h1 {
   padding-bottom: 25px;
   color: #267fff;}
 
+h4 {
+  text-align: left;
+  font-size: 1em;
+  font-family: cursive;
+  margin: 0;}
+
 img {
   width: 200px;
   display: inline-block;}
@@ -18,7 +24,7 @@ img {
 #navbar {
   position: fixed;
   margin-top: 0px;
-  left: 30%}
+  left: 30%;}
 
 ul.menu {
   margin-top: -10px;
