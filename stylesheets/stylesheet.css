@@ -6,6 +6,13 @@ h1 {
   padding-bottom: 25px;
   color: #267fff;}
 
+h2 {
+  font-family: Verdana;
+  text-align: center;
+  font-size: 1em;
+  color: #267fff;}
+}
+
 h4 {
   text-align: left;
   font-size: 1em;
