@@ -4,37 +4,44 @@ h1 {
   text-align: center;
   padding-top: 50px;
   padding-bottom: 25px;
-  color: #267fff;}
+  color: #267fff;
+}
 
 h2 {
   font-family: Verdana;
   text-align: center;
   font-size: 1em;
-  /*color: #267fff;*/}
+  /*color: #267fff;*/
+}
 
 h4 {
   text-align: left;
   font-size: 1em;
   font-family: cursive;
-  margin: 0;}
+  margin: 0;
+}
 
 img {
   width: 200px;
-  display: inline-block;}
+  display: inline-block;
+}
 
 #header {
   position: relative;
   top: -10px;
-  background-color: #e87a57;}
+  background-color: #e87a57;
+}
 
 #navbar {
   position: fixed;
   margin-top: 0px;
-  left: 30%;}
+  left: 30%;
+}
 
 ul.menu {
   margin-top: -10px;
-  color: #e87a57;}
+  color: #e87a57;
+}
 
 li.button {
   display: inline-block;
@@ -42,11 +49,13 @@ li.button {
   border: 2px solid #ffffff;
   font-family: sans-serif;
   color: #ffffff;
-  background-color: #267fff;}
+  background-color: #267fff;
+}
 
 #facepic {
   width: 250px;
-  position: fixed;}
+  position: fixed;
+}
 
 #welcome-text {
   text-align: center;
@@ -54,13 +63,16 @@ li.button {
   width: 73%;
   font-family: cursive;
   font-size: 2em;
-  margin-right: 20px;}
+  margin-right: 20px;
+}
 
 #footer {
   position: fixed;
-  bottom: 10%;}
+  bottom: 10%;
+}
 
 #social-links {
   position: fixed;
   text-align: center;
-  left: 25%;}
+  left: 25%;
+}
