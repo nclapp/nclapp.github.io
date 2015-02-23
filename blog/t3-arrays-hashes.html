@@ -12,7 +12,7 @@
 
   <main>
 
-    <h1>Arrays and Hashes</h1>
+    <h1>Arrays and Hashes in Ruby</h1>
     <h2>An Examination of Their Similarities and Differences</h2>
     <h4>February 22, 2015</h4>
 
@@ -20,15 +20,27 @@
 
     <section>
       <p>
-        First paragraph.
+        Arrays and Hashes are both ways of storing collections of objects in the Ruby programming language. As container objects, they have much in common, but also have some key differences that set them apart from each other.
       </p>
 
       <p>
-        Second paragraph.
+        Arrays are what David Black describes as the "bread-and-butter way to handle collections of objects" (<i>Well Grounded Rubyist</i>, p, 256). An array is basically a big list of objects contained within square brackets. An array is useful because you can find any one of the many objects it contains by calling its index number, which is just a number assigned to a slot. Each slot has its own index number counting up from 0, so 0 is the first item in the array, 1 is the second, 2 is the third, and so on. It's like a series of numbered bins, each one of which contains an object. Need something? As long as you know what bin it's in, just grab that bin and there's your object.
       </p>
 
       <p>
-         Third paragraph.
+        An array can store a number of names, for example. In the array <code>kids = ["Natty", "Ben", "Marjorie", "Jay"]</code>, you see the names of my siblings and me. Since I'm the first born, you can grab my name by asking for the first item in the array (which has the index of 0). Items in arrays stay in the same order, so calling the first object with <code>kids[0]</code> will always return my name, "Natty." If I want to be more formal and go by Nathaniel, I just need to go change the first object in the array from the string "Natty" to the string "Nathaniel," and all of a sudden <code>kids[0]</code> will return "Nathaniel." Similarly, <code>kids[1]</code> will return my first brother's name, Ben; <code>kids[2]</code> will return the name of the third-born sibling, my sister Marjorie; and <code>kids[3]</code> will return the name of my youngest sibling, Jay. A convenient thing about arrays is if I know I want the youngest kid's name, but I'm not sure how many kids there are, I can count from the end. By entering <code>kids[-1]</code>, I will get the youngest sibling's name, Jay. If I enter <code>kids[-2]</code> I'll get the second youngest, my sister Marjorie. And of course <code>kids[-3]</code> will give me the name of the third youngest, Ben, who is also the second oldest, and <code>kids[-4]</code> is me. So you can start at the front or the back and find what you're looking for.
+      </p>
+
+      <p>
+         A Hash is very similar to an array, but instead of just counting up from 0 (or down from -1 if you're starting at the other end), you are able to assign an actual word or category or whatever to your information. So in the list of my siblings and me, instead of calling myself index 0, I could just call myself "oldest." And Jay could be "youngest" instead of <code>kids[3]</code> or <code>kids[-1]</code>. This allows us to be much more clear in what we are actually storing. The data a Hash contain are called "key-value pairs," where the key is equivalent to the category or description of an object (and equivalent to an array's index number), and the value is the actual information we are retrieving. (In the case of my example, the name of each sibling depending on order of birth.) I can create the Hash of the Clapp kids similarly to how I create an array, but I obviously have to enter more information since I need both the description and the item itself. Think of it like a dictionary, where the key is the word, and the value is the definition. If I want to find out the meaning of a word, I input that word as the key and am returned a value, the definition.
+      </p>
+
+      <p>
+         So in the Hash <code>clapp_kids = {"oldest" => "Natty", "second_oldest" => "Ben", "third_oldest" => "Marjorie", "youngest" => "Jay"}</code>, I can find out the name of the second child by calling <code>clapp_kids["second_oldest"]</code>. This will return the name of my brother Ben. I can assign the name of any of my siblings to a variable just like we assign any variable: <code>fourth_born = clapp_kids["youngest"]</code>. This will assign the name of my youngest sibling, Jay, to the variable <code>fourth_born</code>.
+      </p>
+
+      <p>
+         Hashes and arrays are both ways to store a collection of objects. It's possible to retrieve the data they contain by identifying where in the container object the particular piece of information you are seeking resides. In an array, you call the specific index number that corresponds to the info you need. In a Hash, you call the key, which will return the corresponding value. It's possible to think of a Hash as an array of sorts, but with simple integers instead of words as the key in the key-value pairs. Both Hashes and arrays are vital to storing information in Ruby.
       </p>
     </section>
 
