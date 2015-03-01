@@ -1,78 +1,78 @@
 h1 {
+  color: #267fff;
   font-family: Verdana;
   font-weight: bold;
-  text-align: center;
-  padding-top: 50px;
   padding-bottom: 25px;
-  color: #267fff;
+  padding-top: 50px;
+  text-align: center;
 }
 
 h2 {
-  font-family: Verdana;
-  text-align: center;
-  font-size: 1em;
   /*color: #267fff;*/
+  font-family: Verdana;
+  font-size: 1em;
+  text-align: center;
 }
 
 h4 {
-  text-align: left;
-  font-size: 1em;
   font-family: cursive;
+  font-size: 1em;
   margin: 0;
+  text-align: left;
 }
 
 img {
-  width: 200px;
   display: inline-block;
+  width: 200px;
 }
 
 #header {
+  background-color: #e87a57;
   position: relative;
   top: -10px;
-  background-color: #e87a57;
 }
 
 #navbar {
-  position: fixed;
-  margin-top: 0px;
   left: 30%;
+  margin-top: 0px;
+  position: fixed;
 }
 
 ul.menu {
-  margin-top: -10px;
   color: #e87a57;
+  margin-top: -10px;
 }
 
 li.button {
-  display: inline-block;
-  padding: 5px;
-  border: 2px solid #ffffff;
-  font-family: sans-serif;
-  color: #ffffff;
   background-color: #267fff;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  display: inline-block;
+  font-family: sans-serif;
+  padding: 5px;
 }
 
 #facepic {
-  width: 250px;
   position: fixed;
+  width: 250px;
 }
 
 #welcome-text {
-  text-align: center;
   float: right;
-  width: 73%;
   font-family: cursive;
   font-size: 2em;
   margin-right: 20px;
+  text-align: center;
+  width: 73%;
 }
 
 #footer {
-  position: fixed;
   bottom: 10%;
+  position: fixed;
 }
 
 #social-links {
+  left: 25%;
   position: fixed;
   text-align: center;
-  left: 25%;
 }
