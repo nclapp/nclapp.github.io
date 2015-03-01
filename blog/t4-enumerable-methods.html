@@ -27,27 +27,34 @@
       </p>
 
       <p>
-        <!-- HTML generated using hilite.me -->
-        <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
-        2
-        3
-        4
-        5
-        6
-        7
-        8</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">mode</span><span style="color: #f8f8f2">(array)</span>
-        <span style="color: #75715e"># Assume array = [&quot;Dog&quot;, &quot;Dog&quot;, &quot;Cat, &quot;Cat&quot;, &quot;Pig&quot;]</span>
-        <span style="color: #f8f8f2">hash</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">array</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">group_by</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">value</span> <span style="color: #f8f8f2">}</span>
-        <span style="color: #75715e"># Converts array into hash grouped by hash values </span>
-        <span style="color: #75715e"># ie. {&quot;Dog&quot; =&gt; [&quot;Dog&quot;, &quot;Dog&quot;],&quot;Cat&quot; =&gt; [&quot;Cat&quot;, &quot;Cat&quot;], &quot;Pig&quot; =&gt; [&quot;Pig&quot;]}</span>
-        <span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">each</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">key,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">hash</span><span style="color: #f92672">[</span><span style="color: #f8f8f2">key</span><span style="color: #f92672">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span> <span style="color: #f8f8f2">}</span>
-        <span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span> <span style="color: #f92672">|</span><span style="color: #f8f8f2">key,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">values</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">max</span> <span style="color: #f8f8f2">}</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">keys</span>
-        <span style="color: #66d9ef">end</span>
-        </pre></td></tr></table></div>
+        <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">mode</span><span style="color: #f8f8f2">(array)</span>
+<span style="color: #75715e"># Assume array = [&quot;Dog&quot;, &quot;Dog&quot;, &quot;Cat, &quot;Cat&quot;, &quot;Pig&quot;]</span>
+<span style="color: #75715e"># Converts array into hash grouped by values </span>
+<span style="color: #75715e"># ie. {&quot;Dog&quot; =&gt; [&quot;Dog&quot;, &quot;Dog&quot;],&quot;Cat&quot; =&gt; [&quot;Cat&quot;, &quot;Cat&quot;], &quot;Pig&quot; =&gt; [&quot;Pig&quot;]}</span>
+<span style="color: #f8f8f2">hash</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">array</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">group_by</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">value</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #75715e"># Iterates through the hash to make each hash key have a value that equals the</span>
+<span style="color: #75715e"># length of the value array.</span>
+<span style="color: #75715e"># ie. {&quot;Dog&quot; =&gt; 2, &quot;Cat&quot; =&gt; 2, &quot;Pig&quot; =&gt; 1}</span>
+<span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">each</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">key,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">hash</span><span style="color: #f92672">[</span><span style="color: #f8f8f2">key</span><span style="color: #f92672">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #75715e"># Selects the hash key from the hash that has the highest hash value</span>
+<span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span> <span style="color: #f92672">|</span><span style="color: #f8f8f2">key,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">values</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">max</span> <span style="color: #f8f8f2">}</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">keys</span>
+<span style="color: #66d9ef">end</span>
+</pre></td></tr></table></div>
       </p>
 
       <p>
-         That is the whole method, but you can see the <code>#group_by</code> in line 3. Given our array <code>["Dog","Dog","Cat","Cat","Pig"]</code>, we are trying to find which word or words occur the most frequently. Obviously, to us clever humans, "Dog" and "Cat" both occur twice, and "Pig" occurs once, so the mode, the result we are seeking, is that "Dog" and "Cat" both occur the most times.
+         That is the whole method, but you can see the <code>#group_by</code> in line 5. Given our array <code>["Dog","Dog","Cat","Cat","Pig"]</code>, we are trying to find which word or words occur the most frequently. Obviously, to us clever humans, "Dog" and "Cat" both occur twice, and "Pig" occurs once, so the mode, the result we are seeking, is that "Dog" and "Cat" both occur the most times.
       </p>
 
       <p>
