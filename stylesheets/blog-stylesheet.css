@@ -21,5 +21,6 @@ h4 {
 section {
   border: 1px solid black;
   font-family: serif;
-  font-size: 1em
+  font-size: 1em;
+  background-color: white;
 }
