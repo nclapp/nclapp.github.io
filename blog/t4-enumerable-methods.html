@@ -14,7 +14,7 @@
 
     <a name="top"></a>
 
-    <h1>Enumerable#group_by</h1>
+    <h1>The <code>Enumerable#group_by</code> Method:</h1>
     <h2>Organizing Selection Results</h2>
     <h4>March 1, 2015</h4>
 
@@ -23,15 +23,61 @@
     <section>
 
       <p>
-        First paragraph.
+        What the <code>Enumerable#group_by</code> method does is take a code block, execute it for each object it sees, and return a hash with the results it gets from the code block. The most obvious example for me would be a solution to one of this week's challenges, which asked us to find the mode, or most common element, in an array. Here is the solution that my pair partner Sherman and I came up with:
       </p>
 
       <p>
-        Second paragraph.
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+        2
+        3
+        4
+        5
+        6
+        7
+        8</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">mode</span><span style="color: #f8f8f2">(array)</span>
+        <span style="color: #75715e"># Assume array = [&quot;Dog&quot;, &quot;Dog&quot;, &quot;Cat, &quot;Cat&quot;, &quot;Pig&quot;]</span>
+        <span style="color: #f8f8f2">hash</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">array</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">group_by</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">value</span> <span style="color: #f8f8f2">}</span>
+        <span style="color: #75715e"># Converts array into hash grouped by hash values </span>
+        <span style="color: #75715e"># ie. {&quot;Dog&quot; =&gt; [&quot;Dog&quot;, &quot;Dog&quot;],&quot;Cat&quot; =&gt; [&quot;Cat&quot;, &quot;Cat&quot;], &quot;Pig&quot; =&gt; [&quot;Pig&quot;]}</span>
+        <span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">each</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">key,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">hash</span><span style="color: #f92672">[</span><span style="color: #f8f8f2">key</span><span style="color: #f92672">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span> <span style="color: #f8f8f2">}</span>
+        <span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span> <span style="color: #f92672">|</span><span style="color: #f8f8f2">key,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">hash</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">values</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">max</span> <span style="color: #f8f8f2">}</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">keys</span>
+        <span style="color: #66d9ef">end</span>
+        </pre></td></tr></table></div>
       </p>
 
       <p>
-         Third paragraph.
+         That is the whole method, but you can see the <code>#group_by</code> in line 3. Given our array <code>["Dog","Dog","Cat","Cat","Pig"]</code>, we are trying to find which word or words occur the most frequently. Obviously, to us clever humans, "Dog" and "Cat" both occur twice, and "Pig" occurs once, so the mode, the result we are seeking, is that "Dog" and "Cat" both occur the most times.
+      </p>
+
+      <p>
+        Since the computer isn't as smart as us humans, we need to tell it exactly what we want it to do, and how. That is what the above Ruby code block is doing. The hash is great for this task because its system of keys and values is perfect for storing frequency data. It would be great to have a hash that gives us our result of how often each animal appears: <code>{"Dog" => 2, "Cat" => 2, "Pig" => 1}</code>. That is definitely the easiest way to present the data of how many times each animal appears. And since <code>#group_by</code> returns a hash, it is a great method to use to solve this problem.
+      </p>
+
+      <p>
+        In line 3 of the code snippet above, we start by defining <code>hash =</code> a code block, since we'll use the <code>#group_by</code> method and it will be returning a hash. So from now on, the result of our <code>#group_by</code> method will just be stored as "<code>hash</code>." I saw a peer use a similar strategy to solve this challenge too, but he titled his hash "<code>counting_hash</code>," which actually is more clear I think because it tells a person looking at the code what the hash will actually be doing for us. It makes it clearer how it is different from the original array of animals and will just help us to count the frequency of each.
+      </p>
+
+      <p>
+        Now to actually use <code>#group_by</code>. When we hand the method our array, <code>["Dog","Dog","Cat","Cat","Pig"]</code>, with the argument <code>{|value|&nbsp;value}</code>, we're just telling it think of each successive input (in this case each animal) as "value." (That's why it's between the pipe characters, we're basically just giving it a reference handle. It could just be "x" or anything else for all intents and purposes.) The important thing here is that the next part, the actual code block, matches what's between the pipes. We want the method to group the collection by the result of this code block, and really we just want to group them by their names. So by making the code block <code>value</code>, matching what's between the pipes, it will simply evaluate the word and return it. So in this case "Cat" or "Dog" or "Pig" will be returned and grouped together into a sub-array as the value for each animal name key. (Hence the hash we end up with: <code>{"Dog" => ["Dog", "Dog"],"Cat" => ["Cat", "Cat"], "Pig" => ["Pig"]}</code>. To solve the actual challenge we have a couple more steps to translate those subarrays into integers using <code>#size</code>. But <code>#count_by</code>'s job is done so we'll move on.)
+      </p>
+
+      <p>
+        Another example is the one given in the <a href="http://ruby-doc.org/core-2.2.0/Enumerable.html#method-i-group_by">RubyDocs</a>:
+      </p>
+
+      <p>
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">.</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">group_by</span> <span style="color: #f8f8f2">{</span> <span style="color: #f92672">|</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">%</span><span style="color: #ae81ff">3</span> <span style="color: #f8f8f2">}</span>   <span style="color: #75715e">#=&gt; {0=&gt;[3, 6], 1=&gt;[1, 4], 2=&gt;[2, 5]}</span>
+        </pre></td></tr></table></div>
+      </p>
+
+      <p>
+        Here, instead of our array as in the previous example, we hand the method the range of numbers from 1 to 6; so 1, 2, 3, 4, 5, and 6. Then for each number <code>i</code>, we run <code>i</code> through the code block <code>i%3</code> (modulus 3), which will tell us the remainder of 1 divided by 3, 2 divided by 3, 3 divided by 3, etc., and store them in a hash together. So the resulting hash shown in the <a href="http://ruby-doc.org/core-2.2.0/Enumerable.html#method-i-group_by">RubyDocs example</a> immediately above, <code>{0=>[3,6], 1=>[1,4], 2=>[2,5]}</code>, tells us that <code>3%3</code> and <code>6%3</code> equal 0, <code>1%3</code> and <code>4%3</code> equal 1, and <code>2%3</code> and <code>5%3</code> equal 2. It organizes the results if <code>i%3</code> into results according to the result of the code block just like in the Dog/Cat/Pig example at the top.
+      </p>  
+
+      <p>
+        Hope this helps any readers out there understand the <code>Enumerable#count_by</code> method, I know that writing it out and thinking through these examples sure helped solidify my understanding. Thanks everyone!  
       </p>
 
       <p>
