@@ -14,8 +14,8 @@
 
     <a name="top"></a>
 
-    <h1>Classes in Ruby</h1>
-    <h2>Organizing Objects</h2>
+    <h1>Rolling the Dice:</h1>
+    <h2>Describing Objects with Classes in Ruby</h2>
     <h4>March 8, 2015</h4>
 
     <a href="index.html">BACK</a> | <a href="http://nclapp.github.io">HOME</a>
@@ -23,15 +23,61 @@
     <section>
 
       <p>
-        First paragraph.
+        Learning about Ruby classes this week has been challenging but has been rewarding. A class is basically a way to organize a number of method definitions into one collection, which allows you to create objects on a batch basis that all share attributes and methods. Classes are often described as metaphors for actual, real-world objects, which all have specific characteristics and behaviors.
       </p>
 
       <p>
-        Second paragraph.
+        An example of a use of Ruby classes to model a real-world object is to create a Die class, as drawn from this week's challenges. I mean die like dice - you can make a die using Ruby that you can "roll" to return to you a number from 1-6 as a real die shows, or as it may be, a different number of numbers, one of a series of words, or really whatever you want. 
       </p>
 
       <p>
-         Third paragraph.
+         Classes are defined like you'd expect, with a <code>def Class</code> and an <code>end</code>. By convention, classes are capitalized so as to be easily distinguished from methods, variables, etc. (That's why I referred to a Die class above, instead of a die class, even though we wouldn't capitalize "die" in the middle of a sentence in English.) Here is my final solution from Dev Bootcamp Phase 0 Week 5, which differs from Week 4's that only accepted numbers in that it accepts numbers (integers) and words (strings):<br/>
+      	<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Die</span>
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">initialize</span><span style="color: #f8f8f2">(labels)</span>
+    <span style="color: #66d9ef">raise</span> <span style="color: #66d9ef">ArgumentError</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">new(</span><span style="color: #e6db74">&quot;Argh that&#39;s an empty array! Please fill it.&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">unless</span> <span style="color: #f8f8f2">labels</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">1</span>
+  	<span style="color: #f8f8f2">@labels</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">labels</span>
+  	<span style="color: #f8f8f2">puts</span> <span style="color: #e6db74">&quot;Rollin&#39; a die with #{</span><span style="color: #f8f8f2">labels</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #e6db74">} sides...&quot;</span>
+  <span style="color: #66d9ef">end</span>
+
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">sides</span> <span style="color: #75715e">#reader / getter method</span>
+  	<span style="color: #f8f8f2">@labels</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+  <span style="color: #66d9ef">end</span>
+
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">roll</span>
+    <span style="color: #f8f8f2">@labels</span><span style="color: #f92672">[</span><span style="color: #f8f8f2">rand(sides)</span><span style="color: #f92672">]</span>  <span style="color: #75715e"># Calling index[random from 0 to total sides] of array @labels   </span>
+  <span style="color: #66d9ef">end</span>
+<span style="color: #66d9ef">end</span>
+</pre></td></tr></table></div>
+      </p>
+
+      <p>
+      	These fifteen lines of code basically create a die, and not just a normal die with 1, 2, 3, 4, 5, or 6 dots, but a die with sides that are variable in both number and content. We could have a die with "sheep," "pig," "dog," "cat," "ocelot," "giraffe," "hippo," "dolphin," and "anteater" if we wanted to. That's nine sides with words on them! But in Ruby, that's okay. We have ourselves an animal die. In the first method in the class, <code>Die#initialize</code>, you can see that it takes the argument <code>labels</code>. When we create our new die by calling <code>Die.new</code>, we need to give an argument so that the die knows what it has on its sides and what it is able to return. This could be a normal die with the array <code>[1,2,3,4,5,6]</code> as its input, or the crazy animal die I mentioned above, which would have the array <code>["sheep", "pig", "dog", "cat", "ocelot", "giraffe", "hippo", "dolphin", "anteater"]</code> as its argument. Either way, as long as we give it at least one side (or argument) to roll, it'll work. If we don't, we've programmed it to give the user an <code>ArgumentError</code> asking for an input so we don't just have a blank die with zero sides - that clearly wouldn't do us any good!
+      </p>
+
+      <p>
+      	The word you see preceded by the "@" sign in lines 4, 9, and 13 is a variable, but not just like the usual local variables we are used to seeing. It is called an <em>instance variable</em>. This means it is a variable that belongs to an instance of a class, in this case our die. So <code>@labels</code> is a way of storing the words or numbers we have on our die so they are available across the various methods in our class. So we can use it in the <code>#sides</code> method to figure out how many sides our die has, and also in the <code>#roll</code> method to actually roll our die and get a result. Also, and importantly, they belong only to this instance of the class, or in other words, only to this die. Where it says <code>@labels = labels</code> in line 4, we are just assigning whatever input we are given (in my example the array of animals, <code>["sheep", "pig", "dog", "cat", "ocelot", "giraffe", "hippo", "dolphin", "anteater"]</code>) to our instance variable. So now <code>@labels</code> will equal that array whenever we need it.
+      </p>
+
+      <p>
+      	Now that we have the sides of our die stored in the instance variable <code>@labels</code>, we can call it and use it as we need. In the <code>Die#sides</code> method on line 8, we call the regular old <code>#.size</code> method on <code>@labels</code>, which gives us the size of the array we have stored there. In this case, <code>@labels.size</code> is equal to 9, since we've given nine animals to serve as the sides of our die. Similarly, to roll our die, we start with our instance variable <code>@labels</code> again, but this time call the <code>#rand</code> method on our actual <code>#sides</code> method above. By calling <code>@labels[rand(sides)]</code> in line 13, we are looking up the array <code>@labels</code>, and coming up with an index number that we have randomized based on the number of sides from the <code>Die#sides</code> method. So here, <code>Die#sides</code> returns 9 since that's how many animals we have listed, and <code>@labels[rand(sides)]</code> will return an index value like <code>@labels[0]</code> ("sheep"), <code>@labels[4]</code> ("ocelot"), or <code>@labels[8]</code> ("anteater"). Basically it will return a number in the range of 0 to 8 - nine total numbers - which will serve as the index number for our array. The conclusion of all this is that we "roll" our die by calling these methods, and we'll "get" one of the animals, randomized, in response.
+      </p>
+
+      <p>
+      	There you go, we've made a die, and a pretty powerful and flexible one at that. As you can see from this fairly small and simplistic example, classes in Ruby are a powerful tool to help organize methods and data into a collection which can serve as an analogy to real, physical, everyday objects. Pretty cool! Thanks everybody for reading, see you very soon!
       </p>
 
       <p>
