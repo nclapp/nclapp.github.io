@@ -15,7 +15,7 @@
     <a name="top"></a>
 
     <h1>Object-Oriented Programming Concepts:</h1>
-    <h2>Subtitle</h2>
+    <h2>Modules versus Classes in Ruby</h2>
     <h4>March 15, 2015</h4>
 
     <a href="index.html">BACK</a> | <a href="http://nclapp.github.io">HOME</a>
@@ -23,15 +23,85 @@
     <section>
 
       <p>
-        First paragraph.
+        We've been looking at classes in Ruby for a couple weeks now, and they are a great way to organize methods together to model a real-world object in code. I wrote in <a href="t5-ruby-classes.html">last week's blog post on classes</a> that "[c]lasses are often described as metaphors for actual, real-world objects, which all have specific characteristics and behaviors." A module functions very similarly, but modules themselves cannot be instantiated, and instead must be included within a class definition. By including a module in a class, you make all the methods contained in that module available to all instances of that class. Where classes hold behavior and state, modules hold behavior alone, and rely on being "mixed in" to classes to act.
       </p>
 
       <p>
-        Second paragraph.
+        An easy way to think about how modules differ from classes is that modules can be used to model shared behaviors between multiple classes that may have a lot in common but are decidedly different enough to exist as separate classes. I like two examples used in <a href="https://rubymonk.com/learning/books/1-ruby-primer/chapters/35-modules/lessons/79-getting-modular">RubyMonk Chapter 8</a> on modules, one using modules to add a method to a Dojo Class and a Gym class, and the other using modules to find the perimeter of a square in a Square Class and a rectangle in a Rectangle Class.
       </p>
 
       <p>
-         Third paragraph.
+         In the dojo and gym examples, both Gym and Dojo are classes, each containing a method. The Gym class contains the method Gym#preacher_curls (whatever those are), and the Dojo class has the method Dojo#tai_kyo_kyu (again, whatever that is!). But you know what? You can do push-ups at both the gym and the dojo. So while Gym and Dojo need to be different classes because so much about them is different, they could share a method for push-ups in addition to having their respective preacher curls and Tai Kyo Kyu. Do we just write the exact same method into both the Gym and Dojo classes? That sure doesn't seem very D.R.Y. (Don't Repeat Yourself). Instead, we can write a WarmUp module that has the method #push_ups inside it, and then include that module in both the Gym and the Dojo classes. That way we can do push-ups at both locations without having to write the same thing twice. And if we create a new class YogaStudio, and we want to do some push-ups there as part of our warm-up too, we can include the very same module, instead of writing the same #push_ups method yet again into our YogaStudio class. If we have a method we suspect may be useful across multiple classes, we can make it into a module and include it in each class with very little effort or trouble. We include a module by simply writing "include ModuleName" under the class definition, before the initialize method. And then if we need to tweak our idea of what a push-up is, we just change it once in the module, instead of having to redefine the method in every single workout venue class. Pretty cool!
+      </p>
+
+      <p>
+        Another good example from the same chapter in <a href="https://rubymonk.com/learning/books/1-ruby-primer/chapters/35-modules/lessons/79-getting-modular">RubyMonk</a> covers finding the perimeter of different quadrilaterals. Since a square and a rectangle both have four sides and a perimeter that is defined as the sum of all four sides, it reasons that we could have a #perimeter method for both that should operate pretty similarly. Just add all four sides up and voila. So do we need to go through the trouble of defining a #perimeter method in both a Square Class and a Rectangle Class? Again, not very D.R.Y. We may have written each perimeter method slightly differently; for Square Class we could find the perimeter by multiplying the side length * 4, while for a rectangle we may add sides 1 and 2 to sides 3 and 4 to find its perimeter. But in both cases, what would really work cleanly would be just to add all the sides together. Then this could potentially work for non-quadrilateral shapes as well! If we write a Perimeter Module to include in all our shape classes including Square and Rectangle, we can save ourselves from writing many redundant lines of code adding sides to find a perimeter, as well as make it powerful enough to handle other polygonal shapes. Cool! In the code below, observe how this works; each class has a #sides method that returns an array of all its sides, and our Perimeter module just calls that and adds them all together to return a perimeter:
+        <br/>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">module</span> <span style="color: #f8f8f2">Perimeter</span>  <span style="color: #75715e"># This is our module definition.</span>
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perimeter</span>   <span style="color: #75715e"># Here is our #perimeter method in the Perimeter module.</span>
+    <span style="color: #f8f8f2">sides</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">inject(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">sum,</span> <span style="color: #f8f8f2">side</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">sum</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">side</span> <span style="color: #f8f8f2">}</span>  <span style="color: #75715e"># Here we have a small code block to add all the sides </span>
+  <span style="color: #66d9ef">end</span>                                          <span style="color: #75715e"># in an array and return the sum as the perimeter.</span>
+<span style="color: #66d9ef">end</span>
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Rectangle</span>      <span style="color: #75715e"># Here is our Rectangle Class definition.</span>
+  <span style="color: #66d9ef">include</span> <span style="color: #66d9ef">Perimeter</span>  <span style="color: #75715e"># Tell the class to include the Perimeter Module to add the functionality above.</span>
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">initialize</span><span style="color: #f8f8f2">(length,</span> <span style="color: #f8f8f2">width)</span>  <span style="color: #75715e"># Initialize a rectangle with a length and a width.</span>
+    <span style="color: #f8f8f2">@length</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">length</span>
+    <span style="color: #f8f8f2">@width</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">width</span>
+  <span style="color: #66d9ef">end</span>
+
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">sides</span>  <span style="color: #75715e"># Rectangle#sides method puts each side into an array.</span>
+    <span style="color: #f92672">[</span><span style="color: #f8f8f2">@length,</span> <span style="color: #f8f8f2">@width,</span> <span style="color: #f8f8f2">@length,</span> <span style="color: #f8f8f2">@width</span><span style="color: #f92672">]</span>
+  <span style="color: #66d9ef">end</span>
+<span style="color: #66d9ef">end</span>
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Square</span>            <span style="color: #75715e"># Here is our Square Class definition.</span>
+  <span style="color: #66d9ef">include</span> <span style="color: #66d9ef">Perimeter</span>     <span style="color: #75715e"># Again telling the class to include the methods in the Perimeter Module.</span>
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">initialize</span><span style="color: #f8f8f2">(side)</span>  <span style="color: #75715e"># Square, so each side is the same so the initialization only has one argument.</span>
+    <span style="color: #f8f8f2">@side</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">side</span>
+  <span style="color: #66d9ef">end</span>
+
+  <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">sides</span>  <span style="color: #75715e"># The Square#sides method, like Rectangle#sides, returns an array containing each side.</span>
+    <span style="color: #f92672">[</span><span style="color: #f8f8f2">@side,</span> <span style="color: #f8f8f2">@side,</span> <span style="color: #f8f8f2">@side,</span> <span style="color: #f8f8f2">@side</span><span style="color: #f92672">]</span>
+  <span style="color: #66d9ef">end</span>
+<span style="color: #66d9ef">end</span>
+</pre></td></tr></table></div>
+
+      </p>
+
+      <p>
+        As you can see in the example code above, and in the previous example I describe (sharing the #push_ups method between the Gym and Dojo classes), modules can be very helpful in providing shared functionality to multiple classes. At first glance it can be easy to see Classes and Modules as very similar (especially since, confusingly, every class is actually a module!), but they have important differences that set them apart from each other. A module's inability to be instantiated is one key contrast that should always serve as a clear reminder of their different uses. Modules go inside classes, providing methods that you may otherwise have to code again and again in similar classes of objects. I suspect that going forward we will be using modules frequently to keep our code organized, concise, and D.R.Y.! 
+      </p>
+
+      <p>
+        Many thanks for reading! I want to restate that I got the two examples I used from <a href="https://rubymonk.com/learning/books/1-ruby-primer/chapters/35-modules/lessons/79-getting-modular">Chapter 8</a> of the <a href="https://rubymonk.com/learning/books/1-ruby-primer">RubyMonk Ruby Primer</a> online tutorial. Take a look!
       </p>
 
       <p>
