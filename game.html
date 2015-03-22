@@ -1,0 +1,75 @@
+<html>
+
+<h1>Welcome to my game!</h1>
+
+<form><input type="button" onClick="history.go(0)" value="Play again!"></form>
+
+<script language="JavaScript">
+
+var userName = prompt("Welcome! Please enter your name.", "Enter name here!");
+
+var hero = {
+	name: userName,
+	health: 100
+};
+
+var enemy = {
+	name: "Brutal Bob",
+	health: 100
+};
+
+
+while ((hero.health > 0) && (enemy.health > 0)) {
+
+	var heroActionChoice = prompt("What would you like to do, " + hero.name + "? Run and hide, or attack?", "Enter 'Run' or 'Attack' here.").toLowerCase();
+
+	if (heroActionChoice === "run") {
+		runAndHide();
+		break;
+	}
+
+	else if (heroActionChoice === "attack") {
+		attack();
+	}
+
+	else {
+		alert("Please either type 'RUN' or 'ATTACK'! (Case doesn't matter.)");
+	}
+};	
+
+
+function attack() {
+	var damageToInflict = Math.floor((Math.random()*20));
+	enemy.health -= damageToInflict;
+
+	var damageToSuffer = Math.floor((Math.random()*20));
+	hero.health -= damageToSuffer;
+
+	alert("ATTACK!!!\n" + enemy.name + "'s strength is now " + enemy.health + "%. \nYour health is " + hero.health + "%.");
+
+	if ((enemy.health <= 0) && (hero.health > 0)) {
+		alert("Congrats, " + hero.name + ", you've vanquished " + enemy.name + "! Truly heroic!");
+	}
+
+	else if ((enemy.health > 0) && (hero.health <= 0)) {
+		alert("Sorry, " + hero.name + ", you've been taken out by " + enemy.name + ". Total bummer.");
+	}
+};
+
+function runAndHide() {
+	var oddsOfSurvival = (Math.random()*100) 
+
+	if (oddsOfSurvival < 40) {
+		alert("Sorry, you died! Nice try running but you were too slow. " + enemy.name + " got you!");
+	}
+
+	else {
+		alert("Whew, you got away from " + enemy.name + "! That was close! Success!");
+	}
+};
+
+
+
+</script>
+
+</html>
