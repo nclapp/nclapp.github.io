@@ -15,7 +15,7 @@
     <a name="top"></a>
 
     <h1>JavaScript and Ruby Compared</h1>
-    <h2>Similar and Different</h2>
+    <h2>Ruby Hashes and JavaScript Object Literals</h2>
     <h4>March 22, 2015</h4>
 
     <a href="index.html">BACK</a> | <a href="http://nclapp.github.io">HOME</a>
@@ -23,15 +23,78 @@
     <section>
 
       <p>
-        First paragraph.
+        In Ruby, a hash is a great way to store a lot of information that is more complicated than a simple list. While you could keep a list of favorite foods in an array as basically just a list (e.g. <code>["cheeseburger", "mac and cheese", "lasagna"]</code>), if you want to keep track of other people's favorite foods too, a hash will be far more handy since you can add your friends' names and assign each name favorite foods, instead of having just a long random list of foods.
       </p>
 
       <p>
-        Second paragraph.
+        For example, in Ruby, for yourself alone, the array <code>["cheeseburger", "mac and cheese", "lasagna"]</code> can help you track your own favorites. But if you want to keep track of your roommates' favorites as well, the format <code>food_hash = {"Me" => ["cheeseburger", "mac and cheese", "lasagna"], "Steve" => ["stale bread", "old sardines", "tofurkey"], "Suzanne" => ["turducken", "meatloaf", "saltines"]}</code> is far more powerful and expressive since you have folded a couple other people's preferences in there as well. Need Suzanne's favorites? Just call the "Suzanne" key from the hash (<code>food_hash["Suzanne"]</code>)and it'll return <code>["turducken", "meatloaf", "saltines"]</code>. Need the second item? Call <code>food_hash["Suzanne"][1]</code>, and you'll get <code>["meatloaf"]</code>. Each person's name is called a "key,"" and the array of their favorite foods is the "value." Very useful.
       </p>
 
       <p>
-         Third paragraph.
+         As we learned this week, JavaScript has much in common with Ruby, but it has some major differences too. One very nice similarity is that JavaScript has an object much like Ruby's hash to help us organize information. Instead of using "hashes" as in Ruby, in JavaScript we use "object literals" to achieve a similar effect.
+      </p>
+
+      <p>
+        An example of an object literal in JavaScript is:<br/> 
+        <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">me</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Natty&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">age</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">34</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">favFoods</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;cheeseburger&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;mac and cheese&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;lobster&quot;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">quirk</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;loves scuba diving&quot;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+      </p>
+
+      <p>
+        This is the "me" object I created in this week's Challenge 2. You can see I include some favorite foods as I do in the array example I give above. I also included some other info about me since that was the point of the exercise! To retrieve just my name would simply require the command <code>me.name</code>. Check out the same thing in a Ruby hash:
+      </p>
+
+      <p>
+      <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">me_hash</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #e6db74">&quot;name&quot;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #e6db74">&quot;Natty&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;age&quot;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #ae81ff">34</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;favFoods&quot;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">[</span><span style="color: #e6db74">&quot;cheeseburger&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;mac and cheese&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;lobster&quot;</span><span style="color: #f92672">]</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;quirk&quot;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #e6db74">&quot;loves scuba diving&quot;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+      </p>
+
+      <p>
+        To get my name here takes the similar command <code>me_hash["name"]</code>. You can see how similar these are! In JavaScript, we need <code>var</code> to define the object's name, where in Ruby we simply declare it (just like the variables in both languages). And where in Ruby the keys are in quotes, in JavaScript they are properties and don't need to be surrounded by quotes. And instead of the "hash rocket" we know and love from Ruby, we simply use a colon to denote each property value. (JavaScript syntax even more closely resembles the Ruby hash syntax when we use Ruby :symbol notation, but I'm not going to get into that here, check out the <a href="http://ruby-doc.org/core-2.1.0/Hash.html">RubyDocs</a> for more info.) Now let's go back to my roommates' favorite foods example and look at the two languages next to each other again.
+      </p>
+
+      <p>
+        A Ruby hash:
+      </p>
+
+      <p>
+        <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">food_hash</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #e6db74">&quot;Me&quot;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">[</span><span style="color: #e6db74">&quot;cheeseburger&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;mac and cheese&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;lasagna&quot;</span><span style="color: #f92672">]</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;Steve&quot;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">[</span><span style="color: #e6db74">&quot;stale bread&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;old sardines&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;tofurkey&quot;</span><span style="color: #f92672">]</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #e6db74">&quot;Suzanne&quot;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">[</span><span style="color: #e6db74">&quot;turducken&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;meatloaf&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;saltines&quot;</span><span style="color: #f92672">]</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+    </p>
+
+    <p>
+      And a JavaScript object literal:
+    </p>
+
+    <p>
+      <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">roommateFoods</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">me</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;cheeseburger&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;mac and cheese&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;lasagna&quot;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">steve</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;stale bread&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;old sardines&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;tofurkey&quot;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">suzanne</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;turducken&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;meatloaf&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;saltines&quot;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+      </p>
+
+      <p>
+        To retrieve Steve's third favorite food in Ruby, we write <code>food_hash["Steve"][2]</code>, which returns <code>"tofurkey</code>." In JavaScript, we name the object instead of the hash, and treat Steve's name as a property instead of a Ruby key. So very similarly, we get his third favorite food in JavaScript by writing <code>roommateFoods.steve[2]</code>. So while the syntax is slightly different, the functionality is remarkably similar. It's easy to spot the similarities between <code>food_hash["Steve"][2]</code> and <code>roommateFoods.steve[2]</code>. Very cool!
+      </p>
+
+      <p>
+        JavaScript and Ruby have many similarities, and likely as many differences. Lucky for us, the functionality delivered by hashes in Ruby is available to us in JavaScript as well through the use of object literals. Good thing! Thanks for reading!
       </p>
 
       <p>
