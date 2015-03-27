@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Hashes and Arrays Cheat Sheet</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/cheat_stylesheet.css"/>
+  </head>
+
+  <body>
+  	<div class = "pagetitle">
+  		<h1>Ruby Arrays and Hashes: a Cheat sheet!</h1>
+  		<p>
+  			By: <a href= "nclapp.github.io">Natty Clapp</a> and <a href= "logandsprice.github.io">Logan Price</a>
+  		</p>
+  		<p>
+  			<a href= "#create"> Create New Arrays &amp;	 Hashes</a>  |  
+  			<a href= "#accessing"> Accessing Data </a>  |
+  			<a href= "#info"> Obtaining Info</a>  |
+  			<a href= "#adding"> Adding, Altering &amp; Removing Data</a>
+
+  		</p>
+  	</div>
+  	<div class = "content">
+	  	<h2><a class = "category" name="create">Creating New</a></h2>
+
+		<dl>
+			<dt>a = Array.new</dt>
+			<dd>Creates an empty array named "a" (or whatever is on left of =)</dd>
+
+			<dt>a = []</dt>
+			<dd>Creates a new empty array</dd>
+			
+			<dt>a = Array.new(3)</dt>
+			<dd>Creates a new array with 3 empty slots: <code>[nil, nil, nil]</code></dd>
+
+			<dt>a = Array.new(3, "hi")</dt>
+			<dd>Creates a new array with 3 elements with default value of "hi": <code>["hi","hi","hi]</code></dd>  
+
+			<dt>a = [1,2,"hello"]</dt>
+			<dd>Creates a new array with given elements: <code>[1, 2, "hello"]</code></dd>
+
+			<dt>a = %w(hi there everyone)</dt>
+			<dd> Creates a new array by turning each space-separated word into a string element: <code>["hi", "there", "everyone"]</code></dd>
+		</dl>
+
+		<dl>
+			<dt>h = Hash.new</dt>
+			<dd>Creates an empty hash named "h" (or whatever is on left of =)</dd>
+
+			<dt>h = Hash.new("bird")</dt>
+			<dd>Creates a hash that with a default value of "bird" for keys that do not exist (returns <code>nil</code> if no default given)
+
+			<dt>h = {}</dt>
+			<dd>Creates a new empty hash</dd>
+			
+			<dt>h = {"age" => 34, "height" => 76}</dt>
+			<dd>Creates a hash with two key-value pairs: <code>{"age" => 34, "height" => 76}</code></dd>
+
+			<dt>h = {age: 34, height: 76}</dt>
+			<dd>Creates a new hash where the <em>keys are symbols</em>: <code>{:age => 34, :height => 76}</code></dd>
+		</dl>
+
+	  	<h2><a class = "category" name="accessing">Accessing Data</a></h2>
+
+
+		<dl>
+			<dt>a = [1,2,3,4,5,6,7,8]</dt>
+			<br>
+
+			<dt>a[3]</dt>
+			<dd>Returns the fourth (index 3) element of array "a": <code>4</code></dd>
+
+			<dt>a[-3]</dt>
+			<dd>Returns the third to last (third from right) element in the array, "a": <code>6</code></dd>
+			
+			<dt>a[2,3]</dt>
+			<dd>Returns an array of the 3 consecutive elements of array "a", starting at index 2: <code>[3,4,5]</code></dd>
+
+			<dt>a[3..6]</dt>
+			<dd>Returns an array of elements indexed from 3 to 6: <code>[4,5,6,7]</code></dd>
+
+			<dt>a.values_at(1,4,6)</dt>
+			<dd>Returns an array of elements at each specified index: <code>[2,5,7]</code></dd>
+		</dl>
+
+		<dl>
+			<dt>h = {"a" => 1, "b" => 2, "c" => 3, "d" => 4}</dt>
+			<br>
+
+
+			<dt>h["a"]</dt>
+			<dd>Returns the value of key "a": <code>1</code></dd>
+
+			<dt>h.keys</dt>
+			<dd>Returns an array of all the keys in hash, "h": <code>["a","b","c","d"]</code> </dd>
+			<dd>To return a specific key, you can call <code>h.keys[i]</code> where <code>i</code> is the index of the key</dd>
+			
+			<dt>h.values</dt>
+			<dd>Returns an array of all the values in hash, "h": <code>[1,2,3,4]</code> </dd>
+			<dd>To return a specific value, you can call <code>h.values[i]</code> where <code>i</code> is the index of the value</dd>
+
+			<dt>h.values_at("a","c")</dt>
+			<dd>Returns an array of elements at each specified key: <code>[1,3]</code></dd>
+		</dl>
+	  	<h2><a class = "category" name="info">Obtaining Information</a></h2>
+	  	<dl>
+	  		<dt>a = [1,2,3,4,5,6,7,8]</dt>
+			<dt>h = {"a" => 1, "b" => 2, "c" => 3, "d" => 4}</dt>
+			<br>
+
+			<dt>a.count; h.count</dt>
+			<dt>a.size; h.size</dt>
+			<dt>a.length; h.length</dt>
+			<dd>Returns the number of elements in the array or number of key/value pairs in a hash</dd>
+			<dd><code>a.count</code> returns <code>8</code>
+			<dd><code>h.count</code> returns <code>4</code>
+
+			<dt>a.empty?; h.empty?</dt>
+			<dd>Returns a boolean value stating whether the array or hash is empty</dd>
+
+			<dt>a.include?(2); h.include?("a")</dt>
+			<dd>Returns a boolean value stating whether the array includes the argument passed or a hash the key of the argument passed</dd>
+			<dd>(For a hash, you can do the same thing with <code>h.has_key?("a")</code>)</dd>
+
+			<dt>h.has_value?(2)</dt>
+			<dd>Similar to <code>has_key</code>. Returns boolean stating whether the given argument exists as a value in the hash</dd>
+	  	</dl>
+
+	  	<h2><a class = "category" name="adding">Adding, Removing, and Altering Items</a></h2>
+	  	<dl>
+	  		<dt>a = [1,2,3,4,5,6,7,8]</dt>
+			<dt>h = {"a" => 1, "b" => 2, "c" => 3, "d" => 4}</dt>
+			<br>
+
+
+	  		<dt>a.push(9)</dt>
+	  		<dd>Inserts the argument at the end of the array: <code>a</code> now equals <code>[1,2,3,4,5,6,7,8,9]</code></dd>
+
+	  		<dt>a[15] = "bird"</dt>
+	  		<dd>Sets the element at index 15 to "bird"</dd>
+	  		<dd>If "a" has fewer elements than index 15, it will pad the array with <code>nil</code> or the default value until a[15], which will be "bird"</dd>
+	  		<dd>(<code>a</code> now equals <code>[1, 2, 3, 4, 5, 6, 7, 8, 9, nil, nil, nil, nil, nil, nil, "bird"]</code>)</dd>
+
+	  		<dt>h["e"] = 5</dt>
+	  		<dd>Sets the key of "e" to the value 5. If key "e" does not exist, it will create the key/value pair of <code>"e" => 5</code></dd>
+
+	  		<dt>a.unshift("cat")</dt>
+	  		<dd>Inserts argument(s) "cat" (comma separate multiple arguments) at the beginning of the array</dd>
+	  		<dd><code>[1,2,3,4]</code> becomes <code>["cat",1,2,3,4]</code></dd>
+
+	  		<dt>a + ["boop","beep"]</dt>
+	  		<dd>Adds elements of a second array to the end of the first array (concatenates)</dd>
+
+	  		<dt>a.pop; a.pop(2)</dt>
+	  		<dd>Removes the last item of an array and returns the item. If integer argument is passed, it removes that number of items from the end of the array and returns them as an array</dd>
+	  		<dd><code>a.pop</code>: <code>[1,2,3,4]</code> becomes <code>[1,2,3]</code> and returns <code>4</code></dd>
+	  		<dd><code>a.pop(2)</code>: <code>[1,2,3,4]</code> becomes <code>[1,2]</code> and returns <code>[3,4]</code></dd>
+
+	  		<dt>a.delete_at(3)</dt>
+	  		<dd>Removes the item at index 3</dd>
+
+	  		<dt>a.shift; a.shift(2); h.shift</dt>
+	  		<dd>Removes the first item of an array (if argument passed, removes that number of items).</dd>
+	  		<dd>Removes the first key/value pair of a hash</dd>
+	  	</dl>
+  	</div>
+
+  </body>
+</html>
