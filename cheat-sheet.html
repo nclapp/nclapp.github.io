@@ -8,20 +8,29 @@
   </head>
 
   <body>
+  	
   	<div class = "pagetitle">
-  		<h1>Ruby Arrays and Hashes: a Cheat sheet!</h1>
+  		
+  		<h1>
+  			Ruby Arrays and Hashes: A Cheat Sheet!
+  		</h1>
+  		
   		<p>
-  			By: <a href= "http://nclapp.github.io">Natty Clapp</a> and <a href= "http://logandsprice.github.io">Logan Price</a>
+  			By <a href= "http://nclapp.github.io">Natty Clapp</a> and <a href= "http://logandsprice.github.io">Logan Price</a>
   		</p>
+
   		<p>
   			<a href= "#create"> Create New Arrays &amp;	 Hashes</a>  |  
   			<a href= "#accessing"> Accessing Data </a>  |
   			<a href= "#info"> Obtaining Info</a>  |
   			<a href= "#adding"> Adding, Altering &amp; Removing Data</a>
-
   		</p>
+
   	</div>
+
+  	
   	<div class = "content">
+
 	  	<h2><a class = "category" name="create">Creating New</a></h2>
 
 		<dl>
@@ -49,7 +58,7 @@
 			<dd>Creates an empty hash named "h" (or whatever is on left of =)</dd>
 
 			<dt>h = Hash.new("bird")</dt>
-			<dd>Creates a hash that with a default value of "bird" for keys that do not exist (returns <code>nil</code> if no default given)
+			<dd>Creates a hash with a default value of "bird" for keys that do not exist (returns <code>nil</code> if no default given)
 
 			<dt>h = {}</dt>
 			<dd>Creates a new empty hash</dd>
@@ -75,10 +84,10 @@
 			<dd>Returns the third to last (third from right) element in the array, "a": <code>6</code></dd>
 			
 			<dt>a[2,3]</dt>
-			<dd>Returns an array of the 3 consecutive elements of array "a", starting at index 2: <code>[3,4,5]</code></dd>
+			<dd>Returns an array of 3 consecutive elements of array "a", starting at index 2: <code>[3,4,5]</code></dd>
 
 			<dt>a[3..6]</dt>
-			<dd>Returns an array of elements indexed from 3 to 6: <code>[4,5,6,7]</code></dd>
+			<dd>Returns an array of elements indexed from 3 to 6 (a range): <code>[4,5,6,7]</code></dd>
 
 			<dt>a.values_at(1,4,6)</dt>
 			<dd>Returns an array of elements at each specified index: <code>[2,5,7]</code></dd>
@@ -93,15 +102,15 @@
 			<dd>Returns the value of key "a": <code>1</code></dd>
 
 			<dt>h.keys</dt>
-			<dd>Returns an array of all the keys in hash, "h": <code>["a","b","c","d"]</code> </dd>
+			<dd>Returns an array of all the keys in hash "h": <code>["a","b","c","d"]</code> </dd>
 			<dd>To return a specific key, you can call <code>h.keys[i]</code> where <code>i</code> is the index of the key</dd>
 			
 			<dt>h.values</dt>
-			<dd>Returns an array of all the values in hash, "h": <code>[1,2,3,4]</code> </dd>
+			<dd>Returns an array of all the values in hash "h": <code>[1,2,3,4]</code> </dd>
 			<dd>To return a specific value, you can call <code>h.values[i]</code> where <code>i</code> is the index of the value</dd>
 
 			<dt>h.values_at("a","c")</dt>
-			<dd>Returns an array of elements at each specified key: <code>[1,3]</code></dd>
+			<dd>Returns an array of the values at each specified key: <code>[1,3]</code></dd>
 		</dl>
 	  	<h2><a class = "category" name="info">Obtaining Information</a></h2>
 	  	<dl>
@@ -146,7 +155,7 @@
 	  		<dd>Sets the key of "e" to the value 5. If key "e" does not exist, it will create the key/value pair of <code>"e" => 5</code></dd>
 
 	  		<dt>a.unshift("cat")</dt>
-	  		<dd>Inserts argument(s) "cat" (comma separate multiple arguments) at the beginning of the array</dd>
+	  		<dd>Inserts argument(s) "cat" (comma-separate multiple arguments) at the beginning of the array</dd>
 	  		<dd><code>[1,2,3,4]</code> becomes <code>["cat",1,2,3,4]</code></dd>
 
 	  		<dt>a + ["boop","beep"]</dt>
