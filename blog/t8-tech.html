@@ -14,24 +14,75 @@
 
     <a name="top"></a>
 
-    <h1>TITLE</h1>
-    <h2>Subtitle</h2>
-    <h4>Today's Date</h4>
+    <h1>Regular Expressions</h1>
+    <h2>Banned In Phase 0, Useful Going Forward!</h2>
+    <h4>March 29, 2015</h4>
 
     <a href="index.html">BACK</a> | <a href="http://nclapp.github.io">HOME</a>
 
     <section>
 
       <p>
-        First paragraph.
+        A Regular Expression, or RegEx, is a search pattern. They're similar to wildcard searches that we've seen (using *) but are far more powerful. To search for a file ending in ".txt" using a wildcard, we'd type <code>*.txt</code>. The equivalent as a RegEx is not quite as straightforward: <code>.*\.txt$</code>. We use regular expressions to search within a string, so the two parts we need are the regex and a string to look inside.
       </p>
 
       <p>
-        Second paragraph.
+        In the first sentence above, "A Regular Expression, or RegEx, is a search pattern," we could search for the word "sentence" by using the regex 'sentence' to search within the string "A Regular Expression, or RegEx, is a search pattern." It would simply return the word "sentence" since that's what we were searching for. But the power of Regular Expressions lies in their flexibility and ability to search strings for unknowns and patterns, which is why I make the wildcard analogy above.
       </p>
 
       <p>
-         Third paragraph.
+        Regular Expressions have twelve "metacharacters" that must be escaped with the escape character (<code>\</code>) to be used:
+        <ul>
+          <li>Backslash: <code>\</code></li>
+          <li>Caret: <code>^</code></li>
+          <li>Dollar sign: <code>$</code></li>
+          <li>Period/dot: <code>.</code></li>
+          <li>Vertical bar/pipe: <code>|</code></li>
+          <li>Question mark: <code>?</code></li>
+          <li>Asterisk: <code>*</code></li> 
+          <li>Plus sign: <code>+</code></li> 
+          <li>Opening and closing parentheses: <code>()</code></li> 
+          <li>Opening square bracket: <code>[</code></li> 
+          <li>Opening curly brace: <code>{</code></li>
+        </ul>
+        This means that to match <code>a+b=c</code>, you need to escape the plus sign like so: <code>a\+b=c</code>. This isn't too much of a stretch since we're somewhat used to using escapes from our Phase 0 work.
+      </p>
+
+      <p>
+        If you need to find instances of both "hey" and "hay," you can use a <em>character class</em> to search for the two variations. Character classes are enclosed in square brackets. To search for "hay" or "hey" you would simple write: <code>h[ae]y</code>. In addition, you can specify a range in a character class using a hyphen. To search for any number from 0 to 9, the character class would be <code>[0-9]</code>, any letter from A to Z <code>[A-Za-z]</code>. You don't even need a space there, which looks weird. To match any Hex character, the regex <code>[0-9a-fA-F]</code> will do it for you. If you want to find any Hex character and Z, you can just add one single letter to the character class: <code>[0-9a-fzA-FZ]</code>. You can also negate characters using <code>^</code>, so in the phrase "character class," <code>c[^h]</code> would return class, but not character, since we negated the <code>h</code>.
+      </p>
+
+      <p>
+        Character classes have a few shorthand notations that can be useful:
+        <ul>
+          <li><code>\d</code> for digit, equals <code>[0-9]</code></li>
+          <li><code>\w</code> for word, equals <code>[A-Za-z0-9_]</code> (note underscore and digits)</li>
+          <li><code>\s</code> for space or whitespace, equals <code>[ \t\r\n\f]</code> (note the non-printable characters tab <code>\t</code>, carriage return <code>\r</code>, new line <code>\n</code>, and form feed <code>\f</code>)</li>
+        </ul>
+      </p>
+
+      <p>
+        The dot (<code>.</code>) is like a wildcard in a regex, but its use is generally discouraged since it's so broad. An example would be <code>gr.y</code> matching <code>gray</code>, <code>grey</code>, or <code>gr%y</code>. Using a character class or negated character class should be more precise and faster.
+      </p>
+
+      <p>
+        The pipe character (<code>|</code>) functions similarly to "or," as we'd expect: <code>fish | dogs</code> matches either fish or dogs in a string. This is known as alternation, and has a low precedence, so it's a good idea to use parentheses for a complicated search: <code>(cat | dog) food</code> will return "cat food" or "dog food," while <code>cat | dog food</code> will just return "cat" or "dog food."
+      </p>
+
+      <p>
+        To differentiate between English and American spellings, like in the word "colour," we use the <code>?</code> to match the preceding token 0 or more times: <code>colou?r</code>. Looks pretty straightforward. We can use parentheses here again to create a "capturing group" if we have a word or multiple letters that may be optional: <code>go(ing)?</code>.
+      </p>
+
+      <p>
+        Regular expressions can be confusing at first, since often chained together they look like nonsense. They aren't intuitive at first glance. Hopefully this very cursory introduction will at least provide some structure and ideas to make them look a little clearer! Of course the best way to become skillful with these is practice, practice, practice.
+      </p>
+
+      <p>
+        See <a href="http://www.regular-expressions.info/">Regular-Expressions.info</a> for more information, this is where I got most of my info. <a href="http://en.wikipedia.org/wiki/Regular_expression">Wikipedia</a> also has a lot to offer. Get some practice at <a href="http://www.regexr.com/">RegExr</a>, too.
+      </p>
+
+      <p>
+        Thanks for reading!
       </p>
 
       <p>
